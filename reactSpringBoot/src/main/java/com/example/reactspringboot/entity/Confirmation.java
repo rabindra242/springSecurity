@@ -13,7 +13,6 @@ import java.util.UUID;
 @ToString
 @Builder
 @NoArgsConstructor
-
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @Entity
 @Table(name = "confirmations")
@@ -30,6 +29,10 @@ public class Confirmation extends Auditable{
 
     public Confirmation(String key, UserEntity userEntity) {
         this.key = UUID.randomUUID().toString();
+        this.userEntity = userEntity;
+    }
+
+    public Confirmation(UserEntity userEntity) {
         this.userEntity = userEntity;
     }
 }

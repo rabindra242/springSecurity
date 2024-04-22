@@ -21,6 +21,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+import static com.example.reactspringboot.utill.UserUtills.createUserEntity;
+
 @Service
 @Transactional(rollbackOn = Exception.class)
 @RequiredArgsConstructor
@@ -30,13 +32,14 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
     private final CredentialRepository credentialRepository;
     private final ConfirmationRepository confirmationRepository;
-//    private final BcryptPasswordEncoder encoder;
+    //    private final BcryptPasswordEncoder encoder;
     private final ApplicationEventPublisher publisher;
+
 
     @Override
     public void createUser(String firstName, String lastName, String email, String password) {
     var userEntity=userRepository.save(createNewUser(firstName,lastName,email));
-    var credentialEntity= new CredentialEntity(userEntity,password);
+    var credentialEntity= new CredentialEntity(password,userEntity);
     credentialRepository.save(credentialEntity);
     var confirmation=new Confirmation(userEntity);
     confirmationRepository.save(confirmation);
@@ -53,6 +56,5 @@ public class UserServiceImpl implements UserService {
     private UserEntity createNewUser(String firstName, String lastName, String email) {
         var role=getRoleName(Authority.USER.name());
         return createUserEntity(firstName,lastName,email,role);
-
     }
 }

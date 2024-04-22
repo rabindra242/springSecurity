@@ -5,16 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/../../reactSpringBoot/build/generated/sources/annotationProcessor/java/main" isTestSource="false" generated="true" />
     </content>
   </component>
-  <component name="FacetManager">
-    <facet type="jpa" name="JPA">
-      <configuration>
-        <setting name="validation-enabled" value="true" />
-        <setting name="provider-name" value="Hibernate" />
-        <datasource-mapping>
-          <factory-entry name="entityManagerFactory" />
-        </datasource-mapping>
-        <naming-strategy-map />
-      </configuration>
-    </facet>
+  <component name="SonarLintModuleSettings">
+    <option name="uniqueId" value="25bad460-7c20-489c-8f23-c7c7c8f2feea" />
   </component>
 </module>

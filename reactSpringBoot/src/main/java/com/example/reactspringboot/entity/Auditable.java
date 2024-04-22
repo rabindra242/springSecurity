@@ -42,9 +42,8 @@ public abstract class Auditable {
 
     @PrePersist
     public void beforePersist() {
-        var userId= RequestContext.getUserId();
-        if (userId==null) {throw new ApiException("Cannot Persisted To the Database");
-        }
+        var userId= 1l;
+
         setCreatedAt(now());
         setCreatedBy(userId);
         setUpdatedBy(userId);
@@ -52,10 +51,7 @@ public abstract class Auditable {
     }
     @PreUpdate
     public void beforeUpdate() {
-        var userId=RequestContext.getUserId();
-        if (userId==null) {
-            throw new ApiException("Cannot Update entity without UserID");
-        }
+        var userId=1l;
 
         setUpdatedAt(now());
         setUpdatedBy(userId);
